@@ -34,6 +34,7 @@ li.appendChild(deleteBtn);
 list.appendChild(li);
 });
 
+//hide
 const hide = document.querySelector('#hide');
 hide.addEventListener('change',function(e){
   if(hide.checked){
@@ -41,5 +42,26 @@ hide.addEventListener('change',function(e){
   }else{
     list.style.display='block';
   }
+
+})
+
+//filter
+
+const search = document.forms['search-books'].querySelector('input');
+search.addEventListener('keyup',function(e){
+  const bname = e.target.value.toLowerCase();
+
+  const books = list.getElementsByTagName('li');
+  Array.from(books).forEach(function(book){
+    const title = book.firstElementChild.textContent;
+    if(title.toLowerCase().indexOf(bname)!= -1){
+      book.style.display = 'block';
+    }else{
+      book.style.display = 'none';
+    }
+
+  })
+
+
 
 })
